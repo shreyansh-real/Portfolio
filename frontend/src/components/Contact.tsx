@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Mail, Github, Linkedin, Instagram, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useParallax, useScrollIntro } from '../hooks/useParallax';
+import { getApiUrl } from '../utils/apiConfig';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -22,8 +23,12 @@ function Contact() {
     setStatus('idle');
 
     try {
-      const apiUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/contact`, {
+      const apiUrl = getApiUrl();
+      const endpoint = `${apiUrl}/api/contact`;
+      
+      console.log('📤 Sending to:', endpoint);
+      
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,8 +52,10 @@ function Contact() {
       }
     } catch (error) {
       setStatus('error');
-      setStatusMessage('Failed to connect to server. Please make sure the backend is running on port 5000.');
-      console.error('Form submission error:', error);
+      console.error('❌ Form submission error:', error);
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error';
+      const endpoint = getApiUrl();
+      setStatusMessage(`Failed to connect to ${endpoint}. Error: ${errorMsg}`);
     } finally {
       setLoading(false);
     }
