@@ -120,14 +120,21 @@ app.use((req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log('\n🚀 Backend Server Started');
-  console.log(`📍 Server: http://localhost:${PORT}`);
-  console.log(`🏥 Health Check: http://localhost:${PORT}/api/health`);
-  console.log(`📧 Contact Endpoint: POST http://localhost:${PORT}/api/contact`);
-  console.log('\n📋 Configuration Status:');
-  console.log(process.env.GMAIL_EMAIL ? '✓ Gmail email configured' : '✗ Gmail email NOT configured');
-  console.log(process.env.GMAIL_PASSWORD ? '✓ Gmail password configured' : '✗ Gmail password NOT configured');
-  console.log('\n💡 Tip: Make sure your React app is running on port 3000 or 5173\n');
-  console.log(`Server running on port ${PORT}`);
-});
+
+// When deployed on Vercel (serverless), export a handler instead of calling listen.
+// For local development keep the existing listen behavior.
+if (process.env.VERCEL) {
+  module.exports = (req, res) => app(req, res);
+} else {
+  app.listen(PORT, () => {
+    console.log('\n🚀 Backend Server Started');
+    console.log(`📍 Server: http://localhost:${PORT}`);
+    console.log(`🏥 Health Check: http://localhost:${PORT}/api/health`);
+    console.log(`📧 Contact Endpoint: POST http://localhost:${PORT}/api/contact`);
+    console.log('\n📋 Configuration Status:');
+    console.log(process.env.GMAIL_EMAIL ? '✓ Gmail email configured' : '✗ Gmail email NOT configured');
+    console.log(process.env.GMAIL_PASSWORD ? '✓ Gmail password configured' : '✗ Gmail password NOT configured');
+    console.log('\n💡 Tip: Make sure your React app is running on port 3000 or 5173\n');
+    console.log(`Server running on port ${PORT}`);
+  });
+}
