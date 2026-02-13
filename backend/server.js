@@ -6,13 +6,20 @@ require('dotenv').config();
 const app = express();
 
 // Enhanced CORS configuration
+const corsOrigins = [
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'http://127.0.0.1:3000',
+  'http://127.0.0.1:5173'
+];
+
+// Add production frontend URL if provided
+if (process.env.FRONTEND_URL) {
+  corsOrigins.push(process.env.FRONTEND_URL);
+}
+
 const corsOptions = {
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'http://127.0.0.1:3000',
-    'http://127.0.0.1:5173'
-  ],
+  origin: corsOrigins,
   credentials: true,
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type']
@@ -121,10 +128,10 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-// When deployed on Vercel (serverless), export a handler instead of calling listen.
-// For local development keep the existing listen behavior.
+// When deployed on Vercel (serverless), export handler for API routes.
+// For local development, start the server normally.
 if (process.env.VERCEL) {
-  module.exports = (req, res) => app(req, res);
+  module.exports = app;
 } else {
   app.listen(PORT, () => {
     console.log('\n🚀 Backend Server Started');

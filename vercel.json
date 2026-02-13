@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "monorepo": true,
+  "projects": [
+    {
+      "name": "frontend",
+      "path": "frontend",
+      "command": "npm run build",
+      "outputDirectory": "dist"
+    },
+    {
+      "name": "backend",
+      "path": "backend"
+    }
+  ]
+}
