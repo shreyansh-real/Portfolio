@@ -129,4 +129,5 @@ app.listen(PORT, () => {
   console.log(process.env.GMAIL_EMAIL ? '✓ Gmail email configured' : '✗ Gmail email NOT configured');
   console.log(process.env.GMAIL_PASSWORD ? '✓ Gmail password configured' : '✗ Gmail password NOT configured');
   console.log('\n💡 Tip: Make sure your React app is running on port 3000 or 5173\n');
+  console.log(`Server running on port ${PORT}`);
 });
