@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Globe, Users, Calendar, Wrench } from 'lucide-react';
 import { useParallax, useScrollIntro } from '../hooks/useParallax';
 
@@ -388,7 +389,7 @@ function ProjectCard({ project }: { project: Project }) {
             </div>
 
             {/* Lightbox */}
-            {lightboxOpen && (
+            {lightboxOpen && createPortal(
                 <Lightbox
                     images={project.images}
                     currentIndex={lightboxIndex}
@@ -396,7 +397,8 @@ function ProjectCard({ project }: { project: Project }) {
                     onPrev={goToPrev}
                     onNext={goToNext}
                     onGoTo={goToImage}
-                />
+                />,
+                document.body
             )}
         </>
     );

@@ -51,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-hidden">
+    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Ambient Background Motion Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {/* Background base gradient */}
