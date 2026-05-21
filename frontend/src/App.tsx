@@ -3,6 +3,7 @@ import resumePdf from './Shreyansh Patel - Full Stack Developer.pdf';
 import Hero from './components/Hero';
 // import About from './components/About';
 import Journey from './components/Journey';
+import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import CardStack from './components/Cardstack';
@@ -81,9 +82,8 @@ function App() {
       </div>
 
       <div className="relative z-10">
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg shadow-cyan-500/10' : 'bg-transparent'
-        }`}>
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg shadow-cyan-500/10' : 'bg-transparent'
+          }`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <a href="#home" className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">
@@ -96,6 +96,7 @@ function App() {
                   <a href="#home" onClick={(e) => { e.preventDefault(); scrollToId('home'); }} className="hover:text-cyan-400 transition-colors">Home</a>
                   <a href="#about" onClick={(e) => { e.preventDefault(); scrollToId('cardstack'); }} className="hover:text-cyan-400 transition-colors">About</a>
                   <a href="#journey" onClick={(e) => { e.preventDefault(); scrollToId('journey'); }} className="hover:text-cyan-400 transition-colors">Journey</a>
+                  <a href="#experience" onClick={(e) => { e.preventDefault(); scrollToId('experience'); }} className="hover:text-cyan-400 transition-colors">Experience</a>
                   <a href="#skills" onClick={(e) => { e.preventDefault(); scrollToId('skills'); }} className="hover:text-cyan-400 transition-colors">Skills</a>
                   <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToId('contact'); }} className="hover:text-cyan-400 transition-colors">Contact</a>
                 </div>
@@ -126,31 +127,32 @@ function App() {
           </div>
 
           {/* Mobile menu panel */}
-          <div className={`md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 origin-top transition-all duration-300 overflow-hidden ${
-            mobileOpen ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 pointer-events-none'
-          }`}>
-              <div className="px-4 pt-4 pb-6 space-y-3">
-                <a href="#home" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('home'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Home</a>
-                <a href="#about" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('cardstack'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">About</a>
-                <a href="#journey" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('journey'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Journey</a>
-                <a href="#skills" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('skills'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Skills</a>
-                <a href="#contact" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('contact'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Contact</a>
-                <a
-                  href={resumePdf}
-                  download
-                  onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-block w-full text-center px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-black rounded-full font-semibold transition-colors"
-                >
-                  Download Resume
-                </a>
-              </div>
+          <div className={`md:hidden bg-gray-900/95 backdrop-blur-sm border-t border-gray-800 origin-top transition-all duration-300 overflow-hidden ${mobileOpen ? 'opacity-100 max-h-96' : 'opacity-0 max-h-0 pointer-events-none'
+            }`}>
+            <div className="px-4 pt-4 pb-6 space-y-3">
+              <a href="#home" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('home'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Home</a>
+              <a href="#about" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('cardstack'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">About</a>
+              <a href="#journey" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('journey'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Journey</a>
+              <a href="#experience" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('experience'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Experience</a>
+              <a href="#skills" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('skills'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Skills</a>
+              <a href="#contact" onClick={(e) => { e.preventDefault(); setMobileOpen(false); scrollToId('contact'); }} className="block px-3 py-2 rounded-md hover:bg-gray-800/40">Contact</a>
+              <a
+                href={resumePdf}
+                download
+                onClick={() => setMobileOpen(false)}
+                className="mt-2 inline-block w-full text-center px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-black rounded-full font-semibold transition-colors"
+              >
+                Download Resume
+              </a>
             </div>
+          </div>
         </nav>
 
         <main>
           <Hero />
           <CardStack />
           <Journey />
+          <Experience />
           <Skills />
           <Contact />
         </main>
@@ -167,6 +169,7 @@ function App() {
                 <a href="#home" onClick={(e) => { e.preventDefault(); scrollToId('home'); }} className="text-sm hover:text-cyan-400 transition-colors">Home</a>
                 <a href="#about" onClick={(e) => { e.preventDefault(); scrollToId('cardstack'); }} className="text-sm hover:text-cyan-400 transition-colors">About</a>
                 <a href="#journey" onClick={(e) => { e.preventDefault(); scrollToId('journey'); }} className="text-sm hover:text-cyan-400 transition-colors">Journey</a>
+                <a href="#experience" onClick={(e) => { e.preventDefault(); scrollToId('experience'); }} className="text-sm hover:text-cyan-400 transition-colors">Experience</a>
                 <a href="#skills" onClick={(e) => { e.preventDefault(); scrollToId('skills'); }} className="text-sm hover:text-cyan-400 transition-colors">Skills</a>
                 <a href="#contact" onClick={(e) => { e.preventDefault(); scrollToId('contact'); }} className="text-sm hover:text-cyan-400 transition-colors">Contact</a>
               </div>
