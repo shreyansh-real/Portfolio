@@ -7,7 +7,7 @@ function Hero() {
   const [text, setText] = useState("");
   const fullText = "Full Stack Developer (Fresher)";
   const [showCursor, setShowCursor] = useState(true);
-  
+
   const { ref: bgRef, translateY: bgY } = useParallax({ speed: 0.3, direction: 'down' });
   const { ref: contentRef, translateY: contentY } = useParallax({ speed: 0.5, direction: 'up' });
 
@@ -65,10 +65,13 @@ function Hero() {
               {/* Main photo container - circular */}
               <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-cyan-500/60 group-hover:border-cyan-400 transition-all duration-500 shadow-2xl shadow-cyan-500/40 group-hover:shadow-cyan-500/70">
                 {/* Actual profile photo */}
-                <img 
+                <img
                   src={profilePic}
-                  alt="Professional Profile Photo" 
+                  alt="Shreyansh Patel - Freelance Full Stack Developer"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  loading="eager"
+                  width="224"
+                  height="224"
                 />
 
                 {/* Overlay glow effect on hover */}
@@ -100,7 +103,7 @@ function Hero() {
             <p
               className={`text-gray-300 text-lg md:text-xl mb-8 transition-all duration-1000 delay-200 opacity-100 translate-y-0`}
             >
-              BSc Computer Science First Year Student with a passion for building websites
+              BSc Computer Science Second Year Student with a passion for building websites
               and make the web world more beautiful.
             </p>
 

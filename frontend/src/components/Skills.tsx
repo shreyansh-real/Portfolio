@@ -1,14 +1,14 @@
 const skillsData = [
-  { name: 'HTML', level: 90, color: 'bg-cyan-500' },
-  { name: 'CSS', level: 85, color: 'bg-cyan-500' },
-  { name: 'JavaScript', level: 80, color: 'bg-cyan-500' },
-  { name: 'React.js', level: 75, color: 'bg-cyan-500' },
-  { name: 'Firebase', level: 70, color: 'bg-cyan-600' },
-  { name: 'MySQL', level: 70, color: 'bg-cyan-600' },
+  { name: 'HTML', level: 95, color: 'bg-cyan-500' },
+  { name: 'CSS', level: 90, color: 'bg-cyan-500' },
+  { name: 'JavaScript', level: 75, color: 'bg-cyan-500' },
+  { name: 'React.js', level: 60, color: 'bg-cyan-500' },
+  { name: 'Firebase', level: 85, color: 'bg-cyan-600' },
+  { name: 'MySQL', level: 60, color: 'bg-cyan-600' },
   { name: 'Responsive UI', level: 85, color: 'bg-cyan-500' },
-  { name: 'C++', level: 75, color: 'bg-cyan-600' },
-  { name: 'C', level: 75, color: 'bg-cyan-600' },
-  { name: 'Python', level: 70, color: 'bg-cyan-600' }
+  { name: 'C++', level: 60, color: 'bg-cyan-600' },
+  { name: 'C', level: 60, color: 'bg-cyan-600' },
+  { name: 'Python', level: 60, color: 'bg-cyan-600' }
 ];
 
 import { useParallax, useScrollIntro } from '../hooks/useParallax';
@@ -36,11 +36,10 @@ function Skills() {
           {skillsData.map((skill, index) => (
             <div
               key={skill.name}
-              className={`group transition-all duration-500 transform ${
-                isIntroVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
-              }`}
+              className={`group transition-all duration-500 transform ${isIntroVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+                }`}
               style={{
                 transitionDelay: isIntroVisible ? `${index * 60}ms` : '0ms'
               }}
@@ -66,11 +65,10 @@ function Skills() {
 
         {/* Learning section with parallax */}
         <div
-            className={`mt-16 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-300 transform ${
-            isIntroVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
-          }`}
+          className={`mt-16 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-cyan-500/30 hover:border-cyan-500/50 transition-all duration-300 transform ${isIntroVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+            }`}
           style={{
             transitionDelay: isIntroVisible ? `${skillsData.length * 60}ms` : '0ms'
           }}
@@ -82,11 +80,10 @@ function Skills() {
             {['Advanced React Patterns', 'Node.js', 'MongoDB', 'TypeScript', 'Next.js'].map((tech, idx) => (
               <span
                 key={tech}
-                className={`px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 border border-cyan-500/50 rounded-full text-cyan-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 transform ${
-                  isIntroVisible
-                    ? 'opacity-100'
-                    : 'opacity-0'
-                }`}
+                className={`px-6 py-3 bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 border border-cyan-500/50 rounded-full text-cyan-300 hover:scale-110 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 transform ${isIntroVisible
+                  ? 'opacity-100'
+                  : 'opacity-0'
+                  }`}
                 style={{
                   transitionDelay: isIntroVisible ? `${(skillsData.length + idx) * 50}ms` : '0ms'
                 }}

@@ -7,7 +7,7 @@ const cards = [
     id: 1,
     title: 'Who I Am',
     icon: User,
-    description: 'A passionate BSc Computer Science First Year student with a keen interest in Full Stack Development. I love turning ideas into reality through code.',
+    description: 'A passionate BSc Computer Science Second Year student with a keen interest in Full Stack Development. I love turning ideas into reality through code.',
     gradient: 'from-cyan-400 to-cyan-600',
     details: 'Curious, driven, and always eager to learn new technologies'
   },
@@ -162,7 +162,7 @@ function About() {
                     const Icon = card.icon;
                     const position = index - currentIndex;
                     const isVisible = position >= 0 && position <= 2;
-                    
+
                     if (!isVisible) return null;
 
                     return (
@@ -233,9 +233,8 @@ function About() {
               {cards.map((_, index) => (
                 <div
                   key={index}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex ? 'w-8 bg-cyan-500' : 'w-2 bg-cyan-500/40'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-cyan-500' : 'w-2 bg-cyan-500/40'
+                    }`}
                 ></div>
               ))}
             </div>

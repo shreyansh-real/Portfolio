@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shreyansh-intro.vercel.app/sitemap.xml

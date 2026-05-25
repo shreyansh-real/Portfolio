@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import resumePdf from './Shreyansh Patel - Full Stack Developer.pdf';
 import Hero from './components/Hero';
 // import About from './components/About';
@@ -52,6 +53,26 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+      <Helmet>
+        <title>Shreyansh Patel | Freelance Full Stack Developer</title>
+        <meta name="description" content="Portfolio of Shreyansh Patel, a Full Stack Developer specializing in React, Node.js, and modern web architecture. Let's build scalable applications together." />
+        <link rel="canonical" href="https://shreyansh-intro.vercel.app/" />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Shreyansh Patel",
+              "url": "https://shreyansh-intro.vercel.app/",
+              "jobTitle": "Full Stack Developer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Freelance"
+              }
+            }
+          `}
+        </script>
+      </Helmet>
       {/* Ambient Background Motion Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {/* Background base gradient */}

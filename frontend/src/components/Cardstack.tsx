@@ -32,7 +32,7 @@ const CARDS: CardContent[] = [
       badgeStyle: 'bg-white/10 text-cyan-300',
       icon: <User size={48} className="text-cyan-300" />,
       title: 'Who I Am',
-      description: 'A passionate BSc Computer Science First Year student with a keen interest in Full Stack Development.',
+      description: 'A passionate BSc Computer Science Second Year student with a keen interest in Full Stack Development.',
     },
     back: {
       badge: 'Details',
@@ -95,12 +95,12 @@ const CardStack: React.FC = () => {
   const [flippedStates, setFlippedStates] = useState<boolean[]>(CARDS.map(() => false));
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
-  
+
   const cardStackRef = useRef<HTMLDivElement>(null);
   const startXRef = useRef(0);
   const animationFrameRef = useRef<number>();
   const swipeTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
-  
+
   // Cleanup animation frames on unmount
   useEffect(() => {
     return () => {
@@ -119,13 +119,13 @@ const CardStack: React.FC = () => {
       if (e.key === 'ArrowLeft') {
         setCurrentIndex(prev => {
           if (prev <= 0) return prev;
-          
+
           // Add swipe animation to current card
           if (cardStackRef.current) {
             const currentCard = cardStackRef.current.children[prev] as HTMLElement;
             currentCard.classList.add('swipe-right');
           }
-          
+
           swipeTimeoutRef.current = setTimeout(() => {
             setFlippedStates(prevStates => {
               const newState = [...prevStates];
@@ -133,19 +133,19 @@ const CardStack: React.FC = () => {
               return newState;
             });
           }, SWIPE_DURATION);
-          
+
           return prev - 1;
         });
       } else if (e.key === 'ArrowRight') {
         setCurrentIndex(prev => {
           if (prev >= CARDS.length - 1) return prev;
-          
+
           // Add swipe animation to current card
           if (cardStackRef.current) {
             const currentCard = cardStackRef.current.children[prev] as HTMLElement;
             currentCard.classList.add('swipe-left');
           }
-          
+
           swipeTimeoutRef.current = setTimeout(() => {
             setFlippedStates(prevStates => {
               const newState = [...prevStates];
@@ -153,7 +153,7 @@ const CardStack: React.FC = () => {
               return newState;
             });
           }, SWIPE_DURATION);
-          
+
           return prev + 1;
         });
       } else if (e.key === ' ' || e.key === 'Spacebar') {
@@ -172,7 +172,7 @@ const CardStack: React.FC = () => {
         });
       }
     };
-    
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex]);
@@ -180,7 +180,7 @@ const CardStack: React.FC = () => {
   // Get card position class based on index relationship to current index
   const getCardPosition = useCallback((cardIndex: number): CardPosition => {
     const diff = cardIndex - currentIndex;
-    
+
     if (cardIndex === currentIndex) return CARD_POSITIONS.ACTIVE;
     if (diff === 1) return CARD_POSITIONS.NEXT;
     if (diff === 2) return CARD_POSITIONS.NEXT_2;
@@ -203,13 +203,13 @@ const CardStack: React.FC = () => {
   // Handle next card with swipe animation
   const handleNextCard = useCallback(() => {
     if (currentIndex >= CARDS.length - 1) return;
-    
+
     // Add swipe animation to current card
     if (cardStackRef.current) {
       const currentCard = cardStackRef.current.children[currentIndex] as HTMLElement;
       currentCard.classList.add('swipe-left');
     }
-    
+
     const cardEl = cardStackRef.current?.children[currentIndex] as HTMLElement | undefined;
     swipeTimeoutRef.current = setTimeout(() => {
       setCurrentIndex(prev => prev + 1);
@@ -231,7 +231,7 @@ const CardStack: React.FC = () => {
   // Handle previous card with swipe animation
   const handlePrevCard = useCallback(() => {
     if (currentIndex <= 0) return;
-    
+
     // Add swipe animation to current card
     if (cardStackRef.current) {
       const currentCard = cardStackRef.current.children[currentIndex] as HTMLElement;
@@ -259,7 +259,7 @@ const CardStack: React.FC = () => {
     setIsDragging(true);
     startXRef.current = clientX;
     setDragOffset(0);
-    
+
     if (cardStackRef.current) {
       cardStackRef.current.style.cursor = 'grabbing';
       const activeCard = cardStackRef.current.children[currentIndex] as HTMLElement | undefined;
@@ -274,10 +274,10 @@ const CardStack: React.FC = () => {
   // Handle mouse/touch move
   const handleDragMove = useCallback((clientX: number) => {
     if (!isDragging || !cardStackRef.current) return;
-    
+
     const diff = clientX - startXRef.current;
     setDragOffset(diff);
-    
+
     // Smooth update via RAF
     animationFrameRef.current = requestAnimationFrame(() => {
       const activeCard = cardStackRef.current?.children[currentIndex] as HTMLElement | undefined;
@@ -370,7 +370,7 @@ const CardStack: React.FC = () => {
     document.addEventListener('mouseup', handleMouseUp);
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('touchend', handleTouchEnd);
-    
+
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
@@ -401,7 +401,7 @@ const CardStack: React.FC = () => {
         const directionClass = index > currentIndex ? 'swipe-left' : 'swipe-right';
         currentCard.classList.add(directionClass);
       }
-      
+
       swipeTimeoutRef.current = setTimeout(() => {
         setCurrentIndex(index);
         setFlippedStates(prev => {
@@ -424,17 +424,16 @@ const CardStack: React.FC = () => {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">About</h1>
           <p className="text-white/80">Swipe each card to reveal my story</p>
-          
+
           {/* Progress Indicator */}
           <div className="flex justify-center mt-6 space-x-3">
             {CARDS.map((_, index) => (
               <div
                 key={index}
-                className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-white scale-125' 
-                    : 'bg-white/30 hover:bg-white/50'
-                }`}
+                className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${index === currentIndex
+                  ? 'bg-white scale-125'
+                  : 'bg-white/30 hover:bg-white/50'
+                  }`}
                 onClick={() => handleProgressClick(index)}
                 aria-label={`Navigate to card ${index + 1}`}
                 role="button"
@@ -444,9 +443,9 @@ const CardStack: React.FC = () => {
             ))}
           </div>
         </div>
-        
+
         {/* Card Stack Container */}
-        <div 
+        <div
           ref={cardStackRef}
           className="card-stack mb-8"
           onMouseDown={handleMouseDown}
@@ -459,15 +458,13 @@ const CardStack: React.FC = () => {
             const position = getCardPosition(index);
             const isFlipped = flippedStates[index];
             const isActive = position === CARD_POSITIONS.ACTIVE;
-            
+
             return (
               <div
                 key={card.id}
-                className={`card ${card.gradient} ${position} ${
-                  isFlipped ? 'flipped' : ''
-                } ${
-                  isActive && !isFlipped ? 'bounce-in' : ''
-                }`}
+                className={`card ${card.gradient} ${position} ${isFlipped ? 'flipped' : ''
+                  } ${isActive && !isFlipped ? 'bounce-in' : ''
+                  }`}
                 data-index={index}
                 onClick={() => handleCardClick(index)}
                 role="button"
@@ -481,9 +478,8 @@ const CardStack: React.FC = () => {
                 }}
               >
                 {/* Front of card */}
-                <div className={`card-front flex flex-col ${
-                  card.id >= 4 ? 'text-gray-800' : 'text-white'
-                }`}>
+                <div className={`card-front flex flex-col ${card.id >= 4 ? 'text-gray-800' : 'text-white'
+                  }`}>
                   <div className="flex justify-between items-start mb-4">
                     <span className={`${card.front.badgeStyle} px-3 py-1 rounded-full text-sm`}>
                       {card.front.badge}
@@ -499,27 +495,24 @@ const CardStack: React.FC = () => {
                       <i className="fas fa-sync-alt" />
                     </button>
                   </div>
-                  
+
                   <div className="flex-1 flex flex-col justify-center items-center">
                     <div className="floating mb-6 flex items-center justify-center">
                       {/* render Lucide icon element passed in the card data */}
                       <div className="text-6xl">{card.front.icon}</div>
                     </div>
                     <h2 className="text-3xl font-bold mb-2 text-center text-white">{card.front.title}</h2>
-                    <p className={`text-center ${
-                      card.id >= 4 ? 'text-gray-600' : 'text-white'
-                    }`}>
+                    <p className={`text-center ${card.id >= 4 ? 'text-gray-600' : 'text-white'
+                      }`}>
                       {card.front.description}
                     </p>
                   </div>
-                  
+
                   <div className="mt-4 flex justify-between">
                     <button
-                      className={`${
-                        card.id >= 4 ? 'bg-black/10' : 'bg-white/20'
-                      } px-4 py-2 rounded-full flex items-center ${
-                        !isActive && 'invisible'
-                      }`}
+                      className={`${card.id >= 4 ? 'bg-black/10' : 'bg-white/20'
+                        } px-4 py-2 rounded-full flex items-center ${!isActive && 'invisible'
+                        }`}
                       onClick={(e) => {
                         e.stopPropagation();
                         handlePrevCard();
@@ -530,11 +523,9 @@ const CardStack: React.FC = () => {
                       <i className="fas fa-arrow-left mr-2" /> Previous
                     </button>
                     <button
-                      className={`px-4 py-2 rounded-full flex items-center ${
-                        card.front.nextBtnStyle || (card.id >= 4 ? 'bg-black/10' : 'bg-white/20')
-                      } ${
-                        !isActive && 'invisible'
-                      }`}
+                      className={`px-4 py-2 rounded-full flex items-center ${card.front.nextBtnStyle || (card.id >= 4 ? 'bg-black/10' : 'bg-white/20')
+                        } ${!isActive && 'invisible'
+                        }`}
                       onClick={(e) => {
                         e.stopPropagation();
                         if (index === CARDS.length - 1) {
@@ -548,13 +539,12 @@ const CardStack: React.FC = () => {
                       aria-label={index === CARDS.length - 1 ? "Upgrade now" : "Next card"}
                     >
                       {card.front.nextBtnText || 'Next'}{' '}
-                      <i className={`fas ${
-                        index === CARDS.length - 1 ? 'fa-crown' : 'fa-arrow-right'
-                      } ml-2`} />
+                      <i className={`fas ${index === CARDS.length - 1 ? 'fa-crown' : 'fa-arrow-right'
+                        } ml-2`} />
                     </button>
                   </div>
                 </div>
-                
+
                 {/* Back of card */}
                 <div className="card-back text-white bg-blue-800/90 flex flex-col">
                   <div className="flex justify-between items-start mb-4">
@@ -572,7 +562,7 @@ const CardStack: React.FC = () => {
                       <i className="fas fa-undo" />
                     </button>
                   </div>
-                  
+
                   <div className="flex-1 flex flex-col justify-center">
                     <h2 className="text-2xl font-bold mb-4">{card.back.title}</h2>
                     <ul className="space-y-3">
@@ -590,7 +580,7 @@ const CardStack: React.FC = () => {
           })}
         </div>
       </div>
-      
+
       {/* Custom CSS injection */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
